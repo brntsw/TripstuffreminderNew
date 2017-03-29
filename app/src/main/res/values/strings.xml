@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Tripstuffreminder</string>
+
+    <!-- Fragment Trips -->
+    <string name="no_trip">There are no trips. Add one clicking on the + button</string>
+    <string name="error_trips">Error retrieving trips</string>
+
+    <!-- Add trip -->
+    <string name="destination">Destination</string>
+    <string name="ok">OK</string>
+
+    <!-- Airports -->
+    <string name="error_airports">Error retrieving airports</string>
+</resources>

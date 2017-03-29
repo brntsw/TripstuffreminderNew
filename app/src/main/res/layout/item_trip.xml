@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="3dp"
+        card_view:cardBackgroundColor="@color/light_gray"
+        card_view:cardCornerRadius="4dp"
+        card_view:contentPadding="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                tools:text="Miami"/>
+
+            <TextView
+                android:id="@+id/tv_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_toRightOf="@+id/tv_city"
+                android:layout_toEndOf="@+id/tv_city"
+                tools:text="CA"/>
+
+            <TextView
+                android:id="@+id/tv_departure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="14sp"
+                android:drawableLeft="@drawable/departure"
+                android:drawableStart="@drawable/departure"
+                android:drawablePadding="5dp"
+                tools:text="30/04/2017 13:45"
+                android:layout_below="@+id/tv_city"/>
+
+            <TextView
+                android:id="@+id/tv_arrival"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:drawableLeft="@drawable/arrival"
+                android:drawableStart="@drawable/arrival"
+                android:drawablePadding="5dp"
+                tools:text="30/04/2017 13:45"
+                android:layout_below="@+id/tv_city"
+                android:layout_toRightOf="@+id/tv_departure"
+                android:layout_toEndOf="@+id/tv_departure"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
