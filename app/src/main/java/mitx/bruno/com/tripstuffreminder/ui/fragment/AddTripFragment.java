@@ -18,6 +18,9 @@ import mitx.bruno.com.tripstuffreminder.model.Airport;
 
 public class AddTripFragment extends BaseFragment {
 
+    @BindView(R.id.edit_airport)
+    EditText editAirport;
+
     @BindView(R.id.edit_destination)
     EditText editDestination;
 
@@ -28,6 +31,10 @@ public class AddTripFragment extends BaseFragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState){
+        if(container != null){
+            container.removeAllViews();
+        }
+
         View rootView = inflater.inflate(R.layout.fragment_add_trip, container, false);
         setUnBinder(ButterKnife.bind(this, rootView));
 
@@ -38,7 +45,7 @@ public class AddTripFragment extends BaseFragment {
 
     @Override
     void setup() {
-        editDestination.setOnClickListener(view -> {
+        editAirport.setOnClickListener(view -> {
             SelectAirportFragment selectAirportFragment = new SelectAirportFragment();
             selectAirportFragment.setAddFragment(this);
             selectAirportFragment.show(getFragmentManager(), SelectAirportFragment.TAG);
@@ -46,6 +53,6 @@ public class AddTripFragment extends BaseFragment {
     }
 
     public void onAirportSelected(Airport airport){
-        editDestination.setText(airport.getName());
+        editAirport.setText(airport.getName());
     }
 }

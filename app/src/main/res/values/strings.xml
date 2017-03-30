@@ -7,8 +7,11 @@
 
     <!-- Add trip -->
     <string name="destination">Destination</string>
+    <string name="airport">Airport</string>
     <string name="ok">OK</string>
 
     <!-- Airports -->
+    <string name="airports_title">AIRPORTS</string>
+    <string name="hint_type_airport">Type the name of the airport</string>
     <string name="error_airports">Error retrieving airports</string>
 </resources>

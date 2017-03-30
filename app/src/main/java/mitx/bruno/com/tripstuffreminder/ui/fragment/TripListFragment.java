@@ -50,6 +50,10 @@ public class TripListFragment extends BaseFragment implements TripContract.View,
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        if(container != null){
+            container.removeAllViews();
+        }
+
         View rootView = inflater.inflate(R.layout.fragment_trip_list, container, false);
         setUnBinder(ButterKnife.bind(this, rootView));
 

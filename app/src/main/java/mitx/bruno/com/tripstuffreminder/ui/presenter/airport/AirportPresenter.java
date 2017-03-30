@@ -45,19 +45,14 @@ public class AirportPresenter implements AirportContract.Presenter {
             @Override
             public void onCompleted() {
                 Log.d("onCompleted", "Completed loading airports");
+                mAirportView.hideLoading();
             }
 
             @Override
-            public void onError(Throwable e) {
-                mAirportView.hideLoading();
-                mAirportView.onErrorLoadAirports();
-            }
+            public void onError(Throwable e) { mAirportView.onErrorLoadAirports(); }
 
             @Override
-            public void onNext(List<Airport> airports) {
-                mAirportView.hideLoading();
-                mAirportView.onSuccessLoadAirports(airports);
-            }
+            public void onNext(List<Airport> airports) { mAirportView.onSuccessLoadAirports(airports); }
         });
     }
 }

@@ -9,8 +9,11 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 
 import java.util.List;
 
@@ -34,6 +37,9 @@ public class SelectAirportFragment extends DialogFragment implements AirportCont
     @BindView(R.id.coordinator_airports)
     CoordinatorLayout coordinatorLayout;
 
+    @BindView(R.id.input_search)
+    EditText inputSearch;
+
     @BindView(R.id.recycler_airports)
     RecyclerView recyclerAirports;
 
@@ -41,6 +47,7 @@ public class SelectAirportFragment extends DialogFragment implements AirportCont
     private Unbinder unbinder;
     private AddTripFragment mAddTripFragment;
     private AirportContract.Presenter presenter;
+    private AirportAdapter adapter;
 
     public static final String TAG = SelectAirportFragment.class.getName();
 
@@ -90,12 +97,27 @@ public class SelectAirportFragment extends DialogFragment implements AirportCont
 
     @Override
     public void onSuccessLoadAirports(List<Airport> airports) {
-        AirportAdapter adapter = new AirportAdapter(airports);
+        adapter = new AirportAdapter(airports);
         adapter.addClickListener(this);
 
         final LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         recyclerAirports.setLayoutManager(manager);
         recyclerAirports.setAdapter(adapter);
+
+        inputSearch.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                // When user changed the Text
+                adapter.getFilter().filter(cs);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) { }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {}
+        });
     }
 
     @Override
