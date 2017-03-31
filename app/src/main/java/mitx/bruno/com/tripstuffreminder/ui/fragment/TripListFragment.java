@@ -70,7 +70,7 @@ public class TripListFragment extends BaseFragment implements TripContract.View,
 
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, addTripFragment, AddTripFragment.ADD_TRIP)
-                .addToBackStack(TRIP_TAG)
+                .addToBackStack(null)
                 .commit();
     }
 

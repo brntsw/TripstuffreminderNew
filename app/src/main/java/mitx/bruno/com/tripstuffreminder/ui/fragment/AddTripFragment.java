@@ -11,6 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mitx.bruno.com.tripstuffreminder.R;
 import mitx.bruno.com.tripstuffreminder.model.Airport;
+import mitx.bruno.com.tripstuffreminder.model.Location;
 
 /**
  * Created by BPardini on 29/03/2017.
@@ -50,9 +51,17 @@ public class AddTripFragment extends BaseFragment {
             selectAirportFragment.setAddFragment(this);
             selectAirportFragment.show(getFragmentManager(), SelectAirportFragment.TAG);
         });
+
+        editDestination.setOnClickListener(view -> {
+            SelectLocationFragment selectLocationFragment = new SelectLocationFragment();
+            selectLocationFragment.setAddFragment(this);
+            selectLocationFragment.show(getFragmentManager(), SelectLocationFragment.TAG);
+        });
     }
 
     public void onAirportSelected(Airport airport){
         editAirport.setText(airport.getName());
     }
+
+    public void onLocationSelected(Location location){ editDestination.setText(location.getName()); }
 }

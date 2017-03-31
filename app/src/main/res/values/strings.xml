@@ -14,4 +14,10 @@
     <string name="airports_title">AIRPORTS</string>
     <string name="hint_type_airport">Type the name of the airport</string>
     <string name="error_airports">Error retrieving airports</string>
+
+    <!-- Locations -->
+    <string name="locations_title">LOCATIONS</string>
+    <string name="hint_location_name">Type the location name</string>
+    <string name="bt_search_description">Search location</string>
+    <string name="error_locations">Error retrieving locations</string>
 </resources>
