@@ -50,6 +50,7 @@ public class SelectAirportFragment extends DialogFragment implements AirportCont
     private AirportAdapter adapter;
 
     public static final String TAG = SelectAirportFragment.class.getName();
+    private Bundle args;
 
     public void setAddFragment(AddTripFragment addFragment){
         mAddTripFragment = addFragment;
@@ -60,6 +61,7 @@ public class SelectAirportFragment extends DialogFragment implements AirportCont
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         View view = inflater.inflate(R.layout.fragment_select_airport, null, false);
 
+        args = getArguments();
         unbinder = ButterKnife.bind(this, view);
 
         presenter = new AirportPresenter(this, getActivity().getAssets());
@@ -128,6 +130,14 @@ public class SelectAirportFragment extends DialogFragment implements AirportCont
     @Override
     public void onItemClicked(Airport airport) {
         dismiss();
-        mAddTripFragment.onAirportSelected(airport);
+        String airportType = args.getString(Airport.BUNDLE_AIRPORT_TYPE);
+
+        if(airportType != null) {
+            if (airportType.equals(Airport.DEPARTURE_AIRPORT)) {
+                mAddTripFragment.onDepartureAirportSelected(airport);
+            } else if (airportType.equals(Airport.DESTINATION_AIRPORT)) {
+                mAddTripFragment.onDestinationAirportSelected(airport);
+            }
+        }
     }
 }

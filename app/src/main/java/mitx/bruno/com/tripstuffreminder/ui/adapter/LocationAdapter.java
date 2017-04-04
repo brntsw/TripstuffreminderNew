@@ -19,7 +19,7 @@ import mitx.bruno.com.tripstuffreminder.ui.listener.IClickRecyclerViewLocationLi
  * Created by BPardini on 31/03/2017.
  */
 
-public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHolder> {
+public class LocationAdapter extends BaseAdapter {
 
     private List<Location> mLocations;
     private IClickRecyclerViewLocationListener mListener;
@@ -39,19 +39,24 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        ViewHolder viewHolder = (ViewHolder)holder;
+
         Location location = mLocations.get(position);
-        holder.root.setOnClickListener(view -> {
-            mListener.onItemClicked(location);
-        });
+        viewHolder.root.setOnClickListener(view -> mListener.onItemClicked(location));
         if(location != null){
-            holder.bind(location);
+            viewHolder.bind(location);
         }
     }
 
     @Override
     public int getItemCount() {
         return mLocations.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return mLocations.get(position);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

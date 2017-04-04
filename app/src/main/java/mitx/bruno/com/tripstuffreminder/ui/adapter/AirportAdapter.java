@@ -22,7 +22,7 @@ import mitx.bruno.com.tripstuffreminder.ui.listener.IClickRecyclerViewAirportLis
  * Created by BPardini on 29/03/2017.
  */
 
-public class AirportAdapter extends RecyclerView.Adapter<AirportAdapter.ViewHolder> implements Filterable {
+public class AirportAdapter extends BaseAdapter implements Filterable {
 
     private List<Airport> mAirports;
     private List<Airport> mAirportsAux;
@@ -44,13 +44,13 @@ public class AirportAdapter extends RecyclerView.Adapter<AirportAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        ViewHolder viewHolder = (ViewHolder) holder;
+
         Airport airport = mAirportsAux.get(position);
-        holder.root.setOnClickListener(view -> {
-            mListener.onItemClicked(airport);
-        });
+        viewHolder.root.setOnClickListener(view -> mListener.onItemClicked(airport));
         if(airport != null){
-            holder.bind(airport);
+            viewHolder.bind(airport);
         }
     }
 
@@ -98,6 +98,11 @@ public class AirportAdapter extends RecyclerView.Adapter<AirportAdapter.ViewHold
                 return results;
             }
         };
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return mAirports.get(position);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

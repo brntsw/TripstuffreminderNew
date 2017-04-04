@@ -19,11 +19,14 @@ import mitx.bruno.com.tripstuffreminder.model.Location;
 
 public class AddTripFragment extends BaseFragment {
 
-    @BindView(R.id.edit_airport)
-    EditText editAirport;
-
     @BindView(R.id.edit_destination)
     EditText editDestination;
+
+    @BindView(R.id.edit_departure_airport)
+    EditText editDepartureAirport;
+
+    @BindView(R.id.edit_destination_airport)
+    EditText editDestinationAirport;
 
     public static final String ADD_TRIP = "AddTripFragment";
 
@@ -46,8 +49,22 @@ public class AddTripFragment extends BaseFragment {
 
     @Override
     void setup() {
-        editAirport.setOnClickListener(view -> {
+        editDepartureAirport.setOnClickListener(view -> {
+            Bundle args = new Bundle();
+            args.putString(Airport.BUNDLE_AIRPORT_TYPE, Airport.DEPARTURE_AIRPORT);
+
             SelectAirportFragment selectAirportFragment = new SelectAirportFragment();
+            selectAirportFragment.setArguments(args);
+            selectAirportFragment.setAddFragment(this);
+            selectAirportFragment.show(getFragmentManager(), SelectAirportFragment.TAG);
+        });
+
+        editDestinationAirport.setOnClickListener(view -> {
+            Bundle args = new Bundle();
+            args.putString(Airport.BUNDLE_AIRPORT_TYPE, Airport.DESTINATION_AIRPORT);
+
+            SelectAirportFragment selectAirportFragment = new SelectAirportFragment();
+            selectAirportFragment.setArguments(args);
             selectAirportFragment.setAddFragment(this);
             selectAirportFragment.show(getFragmentManager(), SelectAirportFragment.TAG);
         });
@@ -59,8 +76,12 @@ public class AddTripFragment extends BaseFragment {
         });
     }
 
-    public void onAirportSelected(Airport airport){
-        editAirport.setText(airport.getName());
+    public void onDepartureAirportSelected(Airport airport){
+        editDepartureAirport.setText(airport.getName());
+    }
+
+    public void onDestinationAirportSelected(Airport airport){
+        editDestinationAirport.setText(airport.getName());
     }
 
     public void onLocationSelected(Location location){ editDestination.setText(location.getName()); }

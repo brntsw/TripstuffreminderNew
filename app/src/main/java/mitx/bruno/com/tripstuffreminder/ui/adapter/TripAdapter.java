@@ -19,7 +19,7 @@ import mitx.bruno.com.tripstuffreminder.ui.listener.IClickRecyclerViewTripItemLi
  * Created by BPardini on 28/03/2017.
  */
 
-public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
+public class TripAdapter extends BaseAdapter {
 
     private List<Trip> mTrips;
     private IClickRecyclerViewTripItemListener mListener;
@@ -39,17 +39,24 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        ViewHolder viewHolder = (ViewHolder)holder;
+
         Trip trip = mTrips.get(position);
-        holder.root.setOnClickListener((view) -> mListener.onItemClicked(trip.getId()));
+        viewHolder.root.setOnClickListener((view) -> mListener.onItemClicked(trip.getId()));
         if(trip != null){
-            holder.bind(trip);
+            viewHolder.bind(trip);
         }
     }
 
     @Override
     public int getItemCount() {
         return mTrips.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return mTrips.get(position);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

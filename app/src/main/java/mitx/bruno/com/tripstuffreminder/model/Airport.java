@@ -11,6 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Airport {
 
+    public static final String BUNDLE_AIRPORT_TYPE = "airport_type";
+    public static final String DEPARTURE_AIRPORT = "departure";
+    public static final String DESTINATION_AIRPORT = "destination";
+
     private int id;
     @JsonProperty("name")
     private String name;
